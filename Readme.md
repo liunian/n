@@ -9,6 +9,13 @@ Simple flavour of node/iojs binary management, no subshells, no profile setup, n
 
  ![](https://i.cloudup.com/59cA8VEDae.gif)
 
+## 修改点
+
+- fork 自[tj/n](https://github.com/tj/n)
+- 使用了淘宝镜像来替代官方源（墙的缘故）
+- 增加了 alinode，所以可以直接 `n alinode` 而不需要 `n project ...`
+- 不会合并回 tj 的仓库，故也不会发布到 npm，所以需要下载下来，收到 `make` 来安装
+
 ## Installation
 
 With node/iojs already installed:

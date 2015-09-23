@@ -31,13 +31,17 @@ abort() {
 #
 
 BINS=("node"
-      "io")
-MIRROR=(${NODE_MIRROR-https://nodejs.org/dist/}
-        ${IO_MIRROR-https://iojs.org/dist/})
+      "io"
+      "alinode")
+MIRROR=(${NODE_MIRROR-http://npm.taobao.org/mirrors/node/}
+        ${IO_MIRROR-http://npm.taobao.org/mirrors/iojs/}
+        ${ALINODE_MIRROR-http://alinode.aliyun.com/dist/alinode/})
 BIN_NAME=("node"
-          "iojs")
+          "iojs"
+          "alinode")
 VERSIONS_DIR=($BASE_VERSIONS_DIR/node
-              $BASE_VERSIONS_DIR/io)
+              $BASE_VERSIONS_DIR/io
+              $BASE_VERSIONS_DIR/alinode)
 
 if [ -n "$PROJECT_NAME" ]; then
   BINS+=($PROJECT_NAME)
@@ -154,6 +158,7 @@ display_help() {
   Environments:
     n [COMMAND] [args]            Uses default env (node)
     n io [COMMAND]                Sets env as io
+    n alinode [COMMAND]           Sets env as alinode
     n project [COMMAND]           Uses custom env-variables to use non-official sources
 
   Commands:
@@ -179,6 +184,16 @@ display_help() {
     n io rm <version ...>          Remove the given version(s)
     n io --latest                  Output the latest iojs version available
     n io ls                        Output the versions of iojs available
+
+  (alinode):
+    n alinode latest                    Install or activate the latest alinode release
+    n alinode -a x86 latest             As above but force 32 bit architecture
+    n alinode <version>                 Install alinode <version>
+    n alinode use <version> [args ...]  Execute alinode <version> with [args ...]
+    n alinode bin <version>             Output bin path for <version>
+    n alinode rm <version ...>          Remove the given version(s)
+    n alinode --latest                  Output the latest alinode version available
+    n alinode ls                        Output the versions of alinode available
 
   Options:
 
@@ -654,7 +669,8 @@ else
       --latest) display_latest_version; exit ;;
       --stable) display_latest_stable_version; exit ;;
       io) set_default $1 ;; # set bin and continue
-      project) DEFAULT=2 ;;
+      alinode) set_default $1 ;; # set bin and continue
+      project) DEFAULT=3 ;;
       -a|--arch) shift; set_arch $1;; # set arch and continue
       bin|which) display_bin_path_for_version $2; exit ;;
       as|use) shift; execute_with_version $@; exit ;;
