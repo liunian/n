@@ -7,7 +7,7 @@ Simple flavour of node/iojs binary management, no subshells, no profile setup, n
 *Note: Does not work on Windows at the moment. Pull Requests are appreciated.*
 *If you are searching for the latest version below 2.x.x, check out the branch "1.x.x"*
 
- ![](https://i.cloudup.com/59cA8VEDae.gif)
+ ![](http://78re72.com1.z0.glb.clouddn.com/n.gif)
 
 ## 修改点
 
