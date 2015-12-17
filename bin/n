@@ -369,14 +369,14 @@ erase_line() {
 }
 
 #
-# Check if the HEAD response of <url> is 200.
+# Check if the HEAD response of <url> is 200 or 302.
 #
 
 is_ok() {
   if command -v curl > /dev/null; then
-    $GET -Is $1 | head -n 1 | grep 200 > /dev/null
+    $GET -Is $1 | head -n 1 | grep -E '200|302' > /dev/null
   else
-    $GET -S --spider 2>&1 $1 | head -n 1 | grep 200 > /dev/null
+    $GET -S --spider 2>&1 $1 | head -n 1 | grep -E '200|302' > /dev/null
   fi
 }
 
